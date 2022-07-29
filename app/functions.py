@@ -33,7 +33,7 @@ class functions:
 
         img = cv2.imdecode(
             np.fromstring(
-                request.data,
+                img_str,
                 np.uint8
             ),
             cv2.IMREAD_COLOR

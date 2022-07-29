@@ -40,6 +40,7 @@ def api():
                     file.filename
                 )
             )
+            img = functions.process(file)
         else:
             return render_template(
                 'ocr.html',
