@@ -20,7 +20,7 @@
  <h1> Results: </h1>
  {% endif %}
 {% if img_src %}
- <img src="{{ img_src }}">
+ <img src="{{ url_for('static',filename=img_src) }}">
  {% endif %}
 {% if extracted %}
  <p> {{ extracted }} </p>

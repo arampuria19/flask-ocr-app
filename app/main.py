@@ -33,15 +33,27 @@ def api():
                 'ocr.html',
                 msg = 'NO FILE FOUND IN THE PATH'
             )
-        if file and functions.allowed_file(file.filename):
-            file.save(
-                os.path.join(
-                    config.upload_path,
-                    file.filename
-                )
+        if file and functions.allowed_file(functions,file.filename):
+            file_path = os.path.join(
+                config.upload_path,
+                file.filename
             )
-            img = functions.process(file)
+            file.save(file_path)
+            img = functions.process(functions,file_path)
+            path = functions.saveImage(functions,file_path,img)
+            return render_template(
+                'ocr.html',
+                msg = 'SUCCESS',
+                img_src = file.filename
+            )
+        else:
+            return render_template(
+                'ocr.html',
+                msg = 'INVALID FILE FORMAT'
+            )
     else:
+        if not os.path.isdir(config.upload_path):
+            os.mkdir(config.upload_path)
         return render_template(
             'ocr.html',
             msg = 'ENTER YOUR FILE PLIS'
