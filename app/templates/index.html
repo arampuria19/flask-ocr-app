@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+ <title>OCR</title>
 </head>
 <body>
-<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
-<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-<p><img id="output" width="200" /></p>
-<script>
-    var loadFile = function(event) {
-        var image = document.getElementById('output');
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>
+ {% if msg %}
+ <h1 style="color: green"> {{ msg }} </h1>
+ {% endif %}
+<h1> Upload your file </h1>
+<form method=post enctype=multipart/form-data> 
+  <input type="file" name=file>
+  <input type="submit" name=Upload value="Upload">
+ </form>
+{% if extracted %}
+ <h1> Results: </h1>
+ {% endif %}
+{% if img_src %}
+ <img src="{{ img_src }}">
+ {% endif %}
+{% if extracted %}
+ <p> {{ extracted }} </p>
+ {% endif %}
 </body>
 </html>
-
