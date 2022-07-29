@@ -2,7 +2,7 @@ import cv2
 import string
 import pytesseract
 import config
-
+import numpy as np
 class functions:
 
     def initiate(self):
@@ -22,8 +22,16 @@ class functions:
                 
         return img
 
-    def process(self,img_path):
-        img = cv2.imread(img_path)
+    def process(self,img_str):
+        
+        img = cv2.imdecode(
+            np.fromstring(
+                request.data,
+                np.uint8
+            ),
+            cv2.IMREAD_COLOR
+        )
+
         w,h = img.shape[1],img.shape[0]
 
         ratio = w//config.maxlen

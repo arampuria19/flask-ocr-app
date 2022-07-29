@@ -1,7 +1,7 @@
 from flask import Flask, request,render_template, jsonify
 from app.functions import functions
 import numpy as np
-
+import os
 app = Flask(__name__)
 
 '''
@@ -19,18 +19,24 @@ def index():
 @app.route('/api',methods=['GET','POST'])
 def api():
     if request.method == 'POST':
-        # img = request.files.get('img')
-        #A function that takes in image
-        #Returns the dict of
-        if 'img' not in request.files:
+        if 'file' not in request.files:
             return render_template(
                 'ocr.html',
                 msg='NO FILE SELECTED'
             )
-        img_arr = cv2.imdecode(
-            np.fromstring(request.data,np.uint8),
-            cv2.IMREAD_COLOR
-        )
+        file = request.files['file']
+        if file.filename == '':
+            return render_template(
+                'ocr.html',
+                msg = 'NO FILE FOUND IN THE PATH'
+            )
+        try:
+            return functions.process(img_str)
+        except:
+            return render_template(
+                'ocr.html',
+                msg='ERROR HANDLING THE FILE'
+            )
 
 
 if __name__ == '__main__':
