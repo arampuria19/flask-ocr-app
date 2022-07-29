@@ -21,9 +21,9 @@ img = cv2.resize(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY), (w,h), interpolation = c
 texts = pytesseract.image_to_string(img)
 print(texts)
 
-# conf = r'-c tessedit_char_whitelist='+string.ascii_letters   # uncomment if you want to detect alphabets only.
+# conf = r'-c tessedit_char_whitelist='+string.ascii_letters   
 conf = r'-c tessedit_char_whitelist='+string.digits
-# conf = conf + string.ascii_letters   # uncomment if you want to detect numeric digits and alphabets both.
+# conf = conf + string.ascii_letters   
 
 def draw_boxes_on_character(img):
     img_width = img.shape[1]
@@ -48,7 +48,7 @@ def draw_boxes_on_text(img):
     # Return raw information about the detected texts
     raw_data = pytesseract.image_to_data(img)
 
-    print(raw_data)
+    #print(raw_data)
     for count, data in enumerate(raw_data.splitlines()):
         if count > 0:
             data = data.split()
@@ -59,8 +59,7 @@ def draw_boxes_on_text(img):
                 
     return img
 
-# img = draw_boxes_on_character(img)     # uncomment if you want to detect individual characters
-
+# img = draw_boxes_on_character(img)     
 img = draw_boxes_on_text(img)   
 
 # show the output
