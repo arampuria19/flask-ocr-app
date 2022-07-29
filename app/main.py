@@ -41,11 +41,11 @@ def api():
                 )
             )
             img = functions.process(file)
-        else:
-            return render_template(
-                'ocr.html',
-                msg = 'MINOR INCONVENIENCE FROM MY SIDE'
-            )
+    else:
+        return render_template(
+            'ocr.html',
+            msg = 'MINOR INCONVENIENCE FROM MY SIDE'
+        )
 
 
 if __name__ == '__main__':
