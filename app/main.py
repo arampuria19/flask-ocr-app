@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify
-from functions import functions
+from flask import Flask, request,render_template, jsonify
+from app.functions import functions
 app = Flask(__name__)
 
 '''
@@ -12,14 +12,15 @@ def index():
 
 @app.route('/',methods=['GET'])
 def index():
-    # return ('index.html')
+    return render_template('index.html')
 
-@app.route('/api',method=['GET','POST'])
+@app.route('/api',methods=['GET','POST'])
 def api():
     if request.method == 'GET':
         pass
     if request.method == 'POST':
-        img = request.files.get('img')
+        pass
+        # img = request.files.get('img')
         #A function that takes in image
         #Returns the dict of 
 
