@@ -2,6 +2,7 @@ from flask import Flask, request,render_template, jsonify
 from app.functions import functions
 import numpy as np
 import os
+import config
 app = Flask(__name__)
 
 '''
@@ -11,6 +12,8 @@ https://192.168.1.1:8080/pat
 def index():
 
 '''
+
+
 
 @app.route('/',methods=['GET'])
 def index():
@@ -30,14 +33,20 @@ def api():
                 'ocr.html',
                 msg = 'NO FILE FOUND IN THE PATH'
             )
-        try:
-            return functions.process(img_str)
-        except:
+        if file and functions.allowed_file(file.filename):
+            file.save(
+                os.path.join(
+                    app.config['UPLOAD FOLDER'],
+                    file.filename
+                )
+            )
+        else:
             return render_template(
                 'ocr.html',
-                msg='ERROR HANDLING THE FILE'
+                msg = 'MINOR INCONVENIENCE FROM MY SIDE'
             )
 
 
 if __name__ == '__main__':
+    app.config['UPLOAD FOLDER'] = config.upload_path
     app.run()
