@@ -36,7 +36,7 @@ def api():
         if file and functions.allowed_file(file.filename):
             file.save(
                 os.path.join(
-                    app.config['UPLOAD FOLDER'],
+                    config.upload_path,
                     file.filename
                 )
             )
@@ -44,7 +44,7 @@ def api():
     else:
         return render_template(
             'ocr.html',
-            msg = 'MINOR INCONVENIENCE FROM MY SIDE'
+            msg = 'ENTER YOUR FILE PLIS'
         )
 
 
