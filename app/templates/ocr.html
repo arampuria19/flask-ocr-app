@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>OCR</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">       
+ <link rel="stylesheet" href="{{ url_for( 'static', filename='style.css' ) }}">
+</head>
+<body>
+ {% if msg %}
+ <h1 style="color: green"> {{ msg }} </h1>
+ {% endif %}
+<h1> Upload your file </h1>
+<form method=post enctype=multipart/form-data> 
+  <input type="file" name=file>
+  <input type="submit" name=Upload value="Upload">
+ </form>
+{% if extracted %}
+ <h1> Results: </h1>
+ {% endif %}
+{% if img_src %}
+ <img src="{{ img_src }}">
+ {% endif %}
+{% if extracted %}
+ <p> {{ extracted }} </p>
+ {% endif %}
+ <script src="{{ url_for( 'static', filename='script.js' ) }}"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

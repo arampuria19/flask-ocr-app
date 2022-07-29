@@ -36,4 +36,4 @@ class functions:
             interpolation=cv2.INTER_AREA
         )
 
-        return draw_boxes_on_text(img)
+        return self.draw_boxes_on_text(img)

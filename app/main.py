@@ -22,6 +22,11 @@ def api():
         # img = request.files.get('img')
         #A function that takes in image
         #Returns the dict of
+        if 'img' not in request.files:
+            return render_template(
+                'ocr.html',
+                msg='NO FILE SELECTED'
+            )
         img_arr = cv2.imdecode(
             np.fromstring(request.data,np.uint8),
             cv2.IMREAD_COLOR
