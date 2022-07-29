@@ -12,7 +12,7 @@ def index():
 
 @app.route('/',methods=['GET'])
 def index():
-    return render_template('index.html')
+    # return ('index.html')
 
 @app.route('/api',method=['GET','POST'])
 def api():
